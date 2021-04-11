@@ -14,6 +14,8 @@ import {
 import Home from './components/Home';
 import Bisection from './components/RootOfEquation/Bisection';
 import FalsePos from './components/RootOfEquation/FalsePosition';
+import OnePoint from './components/RootOfEquation/OnePointIteration';
+
 
 class App extends Component {
 
@@ -25,6 +27,7 @@ class App extends Component {
           <Route exact path="/" component={Home} />
           <Route exact path="/Bisection" component={Bisection} />
           <Route exact path="/FalsePos" component={FalsePos} />
+          <Route exact path="/OnePoint" component={OnePoint} />
         </BrowserRouter>
         </div>
       </div>
