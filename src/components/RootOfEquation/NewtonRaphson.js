@@ -53,9 +53,9 @@ import React, {
   var newArr = [];
   
   export default function NewtonRaphson() {
-    const [equation, setEquation] = useState("((5/x)+x)/2");
+    const [equation, setEquation] = useState("x^3-x-1");
     const [btnState, setBtnState] = useState(0);
-    let [x_old, setOldX] = useState(-5.0324);
+    let [x_old, setOldX] = useState(1);
 
     const handleSubmit = (e) => {
       if (btnState === 0) {
