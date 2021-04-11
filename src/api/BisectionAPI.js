@@ -3,51 +3,50 @@ const router = express.Router();
 const math = require('mathjs');
 
 router.post('/api/BisectionAPI', (req, res) => {
-      var eq = math.compile(req.body.equation);
-      var xl = parseFloat(req.body.xl);
-      var xr = parseFloat(req.body.xr);
-      var xm = 0;
-      var n = 0;
-      var check = parseFloat(0.000000);
-      var tmpArr = [];
+  var eq = math.compile(req.body.equation);
+  var xl = parseFloat(req.body.xl);
+  var xr = parseFloat(req.body.xr);
+  var xm = 0;
+  var n = 0;
+  var check = parseFloat(0.000000);
+  var tmpArr = [];
 
-      const findxm = (xl, xr) => {
-        return ( parseFloat(xl) + parseFloat(xr) ) / 2
-      }
+  const findxm = (xl, xr) => {
+    return (parseFloat(xl) + parseFloat(xr)) / 2
+  }
 
-      do {
-        let XL = {
-          x: xl
-        };
-        let XR = {
-          x: xr
-        };
-        
-        xm = findxm(xl, xr);
-        n++;
-        if (eq.evaluate(XL) * eq.evaluate(XR) > 0) {
-          check = Math.abs((xm - xl) / xm).toFixed(8);
-          xl = xm;
-        } else {
-          check = Math.abs((xm - xr) / xm).toFixed(8);
-          xr = xm;
-        }
+  do {
+    let XL = {
+      x: xl
+    };
+    let XR = {
+      x: xr
+    };
 
-        tmpArr.push({
-          'iteration': n,
-          'xl': xl,
-          'xr': xr,
-          'xm': xm,
-          'Error': check,
-        });
+    xm = findxm(xl, xr);
+    n++;
+    if (eq.evaluate(XL) * eq.evaluate(XR) > 0) {
+      check = Math.abs((xm - xl) / xm).toFixed(8);
+      xl = xm;
+    } else {
+      check = Math.abs((xm - xr) / xm).toFixed(8);
+      xr = xm;
+    }
 
-      } while (check > 0.000001 && n < 25)
+    tmpArr.push({
+      'iteration': n,
+      'xl': xl,
+      'xr': xr,
+      'xm': xm,
+      'Error': check,
+    });
 
-      res.json({
-      tmpArr: tmpArr
+  } while (check > 0.000001 && n < 25)
 
-      })
-      }
-      );
+  res.json({
+    tmpArr: tmpArr
+
+  })
+});
 module.exports = router;
 
