@@ -16,7 +16,7 @@ import Bisection from './components/RootOfEquation/Bisection';
 import FalsePos from './components/RootOfEquation/FalsePosition';
 import OnePoint from './components/RootOfEquation/OnePointIteration';
 import Secant from './components/RootOfEquation/SecantMethod';
-
+import NewtonRaphson from './components/RootOfEquation/NewtonRaphson';
 
 class App extends Component {
 
@@ -30,6 +30,7 @@ class App extends Component {
           <Route exact path="/FalsePos" component={FalsePos} />
           <Route exact path="/OnePoint" component={OnePoint} />
           <Route exact path="/Secant" component={Secant} />
+          <Route exact path="/NewtonRaphson" component={NewtonRaphson} />
         </BrowserRouter>
         </div>
       </div>

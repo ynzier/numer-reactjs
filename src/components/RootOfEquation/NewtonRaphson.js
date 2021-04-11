@@ -52,7 +52,7 @@ import React, {
   
   var newArr = [];
   
-  export default function OnePoint() {
+  export default function NewtonRaphson() {
     const [equation, setEquation] = useState("((5/x)+x)/2");
     const [btnState, setBtnState] = useState(0);
     let [x_old, setOldX] = useState(-5.0324);
@@ -60,14 +60,14 @@ import React, {
     const handleSubmit = (e) => {
       if (btnState === 0) {
         e.preventDefault();
-        onepoint();
+        newton();
       }
     };
   
-    const onepoint = () => {
+    const newton = () => {
   
       Axios
-        .post("http://localhost:5000/api/OnePointAPI", {
+        .post("http://localhost:5000/api/NewtonRaphsonAPI", {
           x_old: parseFloat(x_old),
           equation: equation,
         })
@@ -87,7 +87,7 @@ import React, {
         <p></p>
               <div>
               <Container>  
-                <h1><code>One-Point Position</code></h1>
+                <h1><code>Newton Raphson</code></h1>
                 <p>Equation :<span>&nbsp;&nbsp;</span>{equation}</p>
                 <p>X :<span>&nbsp;&nbsp;</span>{x_old}</p>
 

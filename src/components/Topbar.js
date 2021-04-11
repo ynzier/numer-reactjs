@@ -29,7 +29,7 @@ const Topbar = () => {
                         <DropdownItem href="/FalsePos" >False Position</DropdownItem>
                         <DropdownItem href="/OnePoint" >One-Point Iteration</DropdownItem>
                         <DropdownItem href="/Secant" >Secant Method</DropdownItem>
-                        <DropdownItem href="/Newton" >Newton Raphson</DropdownItem>
+                        <DropdownItem href="/NewtonRaphson" >Newton Raphson</DropdownItem>
                     </DropdownMenu>
                 </Dropdown>
                 <span>&nbsp;&nbsp;</span>
