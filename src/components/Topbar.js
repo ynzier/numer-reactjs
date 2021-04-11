@@ -25,10 +25,10 @@ const Topbar = () => {
                     </DropdownToggle>
                     <DropdownMenu >
                         <DropdownItem header>Methods</DropdownItem>
-                        <DropdownItem href="/Bisection" >Bisection</DropdownItem>
+                        <DropdownItem href="/Bisection" >Bisection Method</DropdownItem>
                         <DropdownItem href="/FalsePos" >False Position</DropdownItem>
                         <DropdownItem href="/OnePoint" >One-Point Iteration</DropdownItem>
-                        <DropdownItem href="/Secant" >Secant</DropdownItem>
+                        <DropdownItem href="/Secant" >Secant Method</DropdownItem>
                         <DropdownItem href="/Newton" >Newton Raphson</DropdownItem>
                     </DropdownMenu>
                 </Dropdown>

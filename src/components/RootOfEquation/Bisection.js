@@ -61,10 +61,10 @@ const header = [{
 var newArr = [];
 
 export default function Bisection() {
-  const [equation, setEquation] = useState("");
+  const [equation, setEquation] = useState("x^3 - x - 3");
   const [btnState, setBtnState] = useState(0);
-  let [xl, setXL] = useState(0);
-  let [xr, setXR] = useState(0);
+  let [xl, setXL] = useState(1);
+  let [xr, setXR] = useState(2);
 
   const handleSubmit = (e) => {
     if (btnState === 0) {

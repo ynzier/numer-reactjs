@@ -27,12 +27,20 @@ import React, {
   
   }, {
     title: () => {
-      return <p> X <sub> old </sub></p> ;
+      return <p> X <sub> 0 </sub></p> ;
     },
-    dataIndex: 'x_old',
+    dataIndex: 'x0',
     align: 'center',
     width: 300,
   
+  
+  }, {
+    title: () => {
+      return <p> X <sub> 1 </sub></p> ;
+    },
+    dataIndex: 'x1',
+    align: 'center',
+    width: 300,
   
   }, {
     title: () => {
@@ -52,23 +60,25 @@ import React, {
   
   var newArr = [];
   
-  export default function OnePoint() {
-    const [equation, setEquation] = useState("((5/x)+x)/2");
+  export default function Secant() {
+    const [equation, setEquation] = useState("x^3 - 2*x - 5");
     const [btnState, setBtnState] = useState(0);
-    let [x_old, setOldX] = useState(-5.0324);
-
+    let [x0, setXL] = useState(1);
+    let [x1, setXR] = useState(2);
+  
     const handleSubmit = (e) => {
       if (btnState === 0) {
         e.preventDefault();
-        onepoint();
+        secant();
       }
     };
   
-    const onepoint = () => {
+    const secant = () => {
   
       Axios
-        .post("http://localhost:5000/api/OnePointAPI", {
-          x_old: parseFloat(x_old),
+        .post("http://localhost:5000/api/SecantAPI", {
+          x0: parseFloat(x0),
+          x1: parseFloat(x1),
           equation: equation,
         })
         .then(res => {
@@ -87,10 +97,10 @@ import React, {
         <p></p>
               <div>
               <Container>  
-                <h1><code>One-Point Position</code></h1>
+                <h1><code>Secant Method</code></h1>
                 <p>Equation :<span>&nbsp;&nbsp;</span>{equation}</p>
-                <p>X :<span>&nbsp;&nbsp;</span>{x_old}</p>
-
+                <p>X<sub>0</sub> :<span>&nbsp;&nbsp;</span>{x0}</p>
+                <p>X<sub>1</sub> :<span>&nbsp;&nbsp;</span>{x1}</p>
   
   
                 <form onSubmit={handleSubmit}>
@@ -101,9 +111,14 @@ import React, {
                     </label>
                     <p></p>
                     <label>
-                      X<sub>L</sub> :<span>&nbsp;&nbsp;</span>
-                      <input disabled={btnState} type="text" value={x_old} onChange={e => setOldX(e.target.value)}
+                      X<sub>0</sub> :<span>&nbsp;&nbsp;</span>
+                      <input disabled={btnState} type="text" value={x0} onChange={e => setXL(e.target.value)}
                       />
+                    </label>
+                    <p></p>
+                    <label>
+                      X<sub>1</sub> :<span>&nbsp;&nbsp;</span>
+                      <input disabled={btnState} type="text" value={x1} onChange={e => setXR(e.target.value)}/>
                     </label>
                     <p></p>
   

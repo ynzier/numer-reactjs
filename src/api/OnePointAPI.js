@@ -10,16 +10,15 @@ router.post('/api/OnePointAPI', (req, res) => {
       var check = parseFloat(0.000000);
       var tmpArr = [];
 
-      let X_OLD = {
-        x: x_old
-      };
+
 
       do{
+        let X_OLD = {
+          x: x_old
+        };
         x_new=eq.evaluate(X_OLD);
       	check = Math.abs((x_new-x_old)/x_new).toFixed(8);
-      	console.log(check);
       	n++;
-      	console.log(n);
         tmpArr.push({
             'iteration': n,
             'x_old': x_old,

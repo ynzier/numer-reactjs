@@ -15,6 +15,7 @@ import Home from './components/Home';
 import Bisection from './components/RootOfEquation/Bisection';
 import FalsePos from './components/RootOfEquation/FalsePosition';
 import OnePoint from './components/RootOfEquation/OnePointIteration';
+import Secant from './components/RootOfEquation/SecantMethod';
 
 
 class App extends Component {
@@ -28,6 +29,7 @@ class App extends Component {
           <Route exact path="/Bisection" component={Bisection} />
           <Route exact path="/FalsePos" component={FalsePos} />
           <Route exact path="/OnePoint" component={OnePoint} />
+          <Route exact path="/Secant" component={Secant} />
         </BrowserRouter>
         </div>
       </div>

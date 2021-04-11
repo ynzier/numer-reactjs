@@ -11,18 +11,18 @@ router.post('/api/BisectionAPI', (req, res) => {
       var check = parseFloat(0.000000);
       var tmpArr = [];
 
-      let XL = {
-        x: xl
-      };
-      let XR = {
-        x: xr
-      };
-
       const findxm = (xl, xr) => {
         return ( parseFloat(xl) + parseFloat(xr) ) / 2
       }
 
       do {
+        let XL = {
+          x: xl
+        };
+        let XR = {
+          x: xr
+        };
+        
         xm = findxm(xl, xr);
         n++;
         if (eq.evaluate(XL) * eq.evaluate(XR) > 0) {
