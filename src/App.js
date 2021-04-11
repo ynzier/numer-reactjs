@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 // Router
-import { Route } from 'react-router-dom';
+import { Route,BrowserRouter } from 'react-router-dom';
 
 //import Components and Pages
 
@@ -18,11 +18,14 @@ class App extends Component {
     return (
       <div>
         <div>
+        <BrowserRouter>
           <Route exact path="/" component={Home} />
           <Route exact path="/Bisection" component={Bisection} />
           <Route exact path="/api/BisectionAPI" component={BisectionAPI} />
           <Route exact path="/FalsePos" component={FalsePos} />
           <Route exact path="/FalsePos" />
+          </BrowserRouter>
+
         </div>
       </div>
     )
