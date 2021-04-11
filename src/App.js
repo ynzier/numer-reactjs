@@ -1,18 +1,21 @@
-import React, { Component } from 'react';
+import React, {
+  Component
+} from 'react';
 import './App.css';
-
+import './index.css';
 // Router
-import { Route,BrowserRouter } from 'react-router-dom';
+import {
+  Route,
+  BrowserRouter
+} from 'react-router-dom';
 
 //import Components and Pages
 
-import Home from './components/Home'
-//หน้าแอปส่วนหลักในการทำการ Route และrender หน้า
-import Bisection from './components/Bisection'
-import FalsePos from './components/FalsePosition'
-import BisectionAPI from './api/BisectionAPI'
-class App extends Component {
+import Home from './components/Home';
+import Bisection from './components/RootOfEquation/Bisection';
+import FalsePos from './components/RootOfEquation/FalsePosition';
 
+class App extends Component {
 
   render() {
     return (
@@ -21,11 +24,8 @@ class App extends Component {
         <BrowserRouter>
           <Route exact path="/" component={Home} />
           <Route exact path="/Bisection" component={Bisection} />
-          <Route exact path="/api/BisectionAPI" component={BisectionAPI} />
           <Route exact path="/FalsePos" component={FalsePos} />
-          <Route exact path="/FalsePos" />
-          </BrowserRouter>
-
+        </BrowserRouter>
         </div>
       </div>
     )

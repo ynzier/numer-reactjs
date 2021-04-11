@@ -11,27 +11,26 @@ router.post('/api/BisectionAPI', (req, res) => {
       var check = parseFloat(0.000000);
       var tmpArr = [];
 
-      let scopel = {
+      let XL = {
         x: xl
       };
-      let scoper = {
-          x: xr
+      let XR = {
+        x: xr
       };
 
-      const findxm = (xl,xr) => {
-        return (parseFloat(xl)+parseFloat(xr))/2
+      const findxm = (xl, xr) => {
+        return ( parseFloat(xl) + parseFloat(xr) ) / 2
       }
 
-      do{
-        xm = findxm(xl,xr);
+      do {
+        xm = findxm(xl, xr);
         n++;
-        if(eq.evaluate(scopel)*eq.evaluate(scoper) > 0) {
-          check=Math.abs((xm-xl)/xm).toFixed(8);
-          xl=xm;
-        }
-        else {
-          check=Math.abs((xm-xr)/xm).toFixed(8);
-          xr=xm;
+        if (eq.evaluate(XL) * eq.evaluate(XR) > 0) {
+          check = Math.abs((xm - xl) / xm).toFixed(8);
+          xl = xm;
+        } else {
+          check = Math.abs((xm - xr) / xm).toFixed(8);
+          xr = xm;
         }
 
         tmpArr.push({
@@ -42,13 +41,13 @@ router.post('/api/BisectionAPI', (req, res) => {
           'Error': check,
         });
 
-      }while(check>0.000001)
-      
+      } while (check > 0.000001 && n < 25)
+
       res.json({
-        tmpArr: tmpArr
+      tmpArr: tmpArr
 
       })
-}
-);
+      }
+      );
 module.exports = router;
 

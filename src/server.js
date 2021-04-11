@@ -6,15 +6,10 @@ const cors = require("cors")
 app.use(cors());
 const port = process.env.PORT || 5000;
 
-
-
-app.get('/',(req, res) => {
-
-});
 const bisecapi = require('./api/BisectionAPI')
-
+const FalsePosAPI = require('./api/FalsePosAPI')
 app.use('/',bisecapi);
-
+app.use('/',FalsePosAPI);
 
 app.listen(port, () => console.log("Backend server live on " + port));
   
