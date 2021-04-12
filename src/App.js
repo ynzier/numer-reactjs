@@ -18,6 +18,8 @@ import OnePoint from './components/RootOfEquation/OnePointIteration';
 import Secant from './components/RootOfEquation/SecantMethod';
 import NewtonRaphson from './components/RootOfEquation/NewtonRaphson';
 
+import CramersRule from './components/LinearAlgebra/CramersRule';
+
 class App extends Component {
 
   render() {
@@ -31,6 +33,7 @@ class App extends Component {
           <Route exact path="/OnePoint" component={OnePoint} />
           <Route exact path="/Secant" component={Secant} />
           <Route exact path="/NewtonRaphson" component={NewtonRaphson} />
+          <Route exact path="/CramersRule" component={CramersRule} />
         </BrowserRouter>
         </div>
       </div>

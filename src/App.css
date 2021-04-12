@@ -26,7 +26,8 @@
 .App-link {
   color: #61dafb;
 }
-.nav-color{
+
+.nav-color {
   background-color: rgb(55, 8, 131);
 }
 
@@ -34,6 +35,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
