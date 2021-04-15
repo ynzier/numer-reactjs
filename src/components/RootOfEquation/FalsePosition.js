@@ -1,5 +1,6 @@
 import React, {
-  useState
+  useState,
+  useEffect
 } from 'react';
 import {
   Container
@@ -65,6 +66,10 @@ export default function FalsePosition() {
   const [btnState, setBtnState] = useState(0);
   let [xl, setXL] = useState(1);
   let [xr, setXR] = useState(2);
+
+  useEffect(() => {
+    document.title = "False Position Method ";
+  }, []);
 
   const handleSubmit = (e) => {
     if (btnState === 0) {

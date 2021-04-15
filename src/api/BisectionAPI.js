@@ -3,6 +3,7 @@ const router = express.Router();
 const math = require('mathjs');
 
 router.post('/api/BisectionAPI', (req, res) => {
+  
   var eq = math.compile(req.body.equation);
   var xl = parseFloat(req.body.xl);
   var xr = parseFloat(req.body.xr);

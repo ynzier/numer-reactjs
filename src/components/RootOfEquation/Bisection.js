@@ -1,5 +1,6 @@
 import React, {
-  useState
+  useState,
+  useEffect
 } from 'react';
 import {
   Container
@@ -60,11 +61,19 @@ const header = [{
 
 var newArr = [];
 
+
 export default function Bisection() {
+
+
+
   const [equation, setEquation] = useState("x^3 - x - 3");
   const [btnState, setBtnState] = useState(0);
   let [xl, setXL] = useState(1);
   let [xr, setXR] = useState(2);
+
+  useEffect(() => {
+    document.title = "Bisection Method ";
+  }, []);
 
   const handleSubmit = (e) => {
     if (btnState === 0) {
