@@ -19,6 +19,7 @@ import Secant from './components/RootOfEquation/SecantMethod';
 import NewtonRaphson from './components/RootOfEquation/NewtonRaphson';
 
 import CramersRule from './components/LinearAlgebra/CramersRule';
+import GaussElimination from './components/LinearAlgebra/GaussElimination';
 
 class App extends Component {
 
@@ -34,6 +35,7 @@ class App extends Component {
           <Route exact path="/Secant" component={Secant} />
           <Route exact path="/NewtonRaphson" component={NewtonRaphson} />
           <Route exact path="/CramersRule" component={CramersRule} />
+          <Route exact path="/GaussElimination" component={GaussElimination} />
         </BrowserRouter>
         </div>
       </div>
