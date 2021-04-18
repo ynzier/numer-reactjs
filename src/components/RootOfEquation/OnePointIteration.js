@@ -59,7 +59,7 @@ export default function OnePoint() {
   let [x_old, setOldX] = useState(-5.0324);
 
   useEffect(() => {
-    document.title = topic
+    document.title = topic;
   }, []);
 
   const handleSubmit = (e) => {

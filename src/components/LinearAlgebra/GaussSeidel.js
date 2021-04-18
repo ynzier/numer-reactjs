@@ -29,21 +29,17 @@ export default function GaussSeidel() {
     let copy = [...matrixA];
     copy[row][column] = +event.target.value;
     setMatrixA(copy);
-
   };
-
 
   const initialB = (row, column, event) => {
     let copy = [...matrixB];
     copy[row][column] = +event.target.value;
     setMatrixB(copy);
-
   };
   const initialX = (row, column, event) => {
     let copy = [...matrixX];
     copy[row][column] = +event.target.value;
     setMatrixX(copy);
-
   };
 
   const handleSubmit = (e) => {
@@ -53,24 +49,20 @@ export default function GaussSeidel() {
     }
   };
   const gauss_seidel = () => {
-
-    Axios
-      .post("http://localhost:5000/api/GaussSeidelAPI", {
-        matrixA: matrixA,
-        matrixB: matrixB,
-        matrixX: matrixX,
-      })
-      .then(res => {
-
+    Axios.post("http://localhost:5000/api/GaussSeidelAPI", {
+      matrixA: matrixA,
+      matrixB: matrixB,
+      matrixX: matrixX,
+    })
+      .then((res) => {
         setBtnState(true);
         setOutput(res.data.out);
         console.log(res.data.out);
-      
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
-  }
+  };
 
   return (
     <div>
@@ -84,57 +76,56 @@ export default function GaussSeidel() {
           <p></p>
           <p></p>
           <div>
-          <Row>
-          <Col xs="7">X Matrix
-            <table>
-              
-              <tbody>
-                {matrixA.map((row, rowIndex) => (
-                  <tr key={rowIndex}>
-                    {row.map((column, columnIndex) => (
-                      <td key={columnIndex}>
-                        <input
-                          type="number"
-                          disabled={btnState}
-                          onChange={(e) =>
-                            initialA(rowIndex, columnIndex, e)
-                          }
-                        />
-                      </td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            </Col>
-            
-            <Col xs="5">Y Matrix
-            <table>
-              
-              <tbody>
-                {matrixB.map((row, rowIndex) => (
-                  <tr key={rowIndex}>
-                    {row.map((column, columnIndex) => (
-                      <tr key={columnIndex}>
-                        <input
-                          type="number"
-                          disabled={btnState}
-                          onChange={(e) =>
-                            initialB(rowIndex, columnIndex, e)
-                          }
-                        />
+            <Row>
+              <Col xs="7">
+                X Matrix
+                <table>
+                  <tbody>
+                    {matrixA.map((row, rowIndex) => (
+                      <tr key={rowIndex}>
+                        {row.map((column, columnIndex) => (
+                          <td key={columnIndex}>
+                            <input
+                              type="number"
+                              disabled={btnState}
+                              onChange={(e) =>
+                                initialA(rowIndex, columnIndex, e)
+                              }
+                            />
+                          </td>
+                        ))}
                       </tr>
                     ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            </Col>
+                  </tbody>
+                </table>
+              </Col>
+
+              <Col xs="5">
+                Y Matrix
+                <table>
+                  <tbody>
+                    {matrixB.map((row, rowIndex) => (
+                      <tr key={rowIndex}>
+                        {row.map((column, columnIndex) => (
+                          <tr key={columnIndex}>
+                            <input
+                              type="number"
+                              disabled={btnState}
+                              onChange={(e) =>
+                                initialB(rowIndex, columnIndex, e)
+                              }
+                            />
+                          </tr>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </Col>
             </Row>
             <p></p>
             Initial X
             <table>
-              
               <tbody>
                 {matrixX.map((row, rowIndex) => (
                   <tr key={rowIndex}>
@@ -143,9 +134,7 @@ export default function GaussSeidel() {
                         <input
                           type="number"
                           disabled={btnState}
-                          onChange={(e) =>
-                            initialX(rowIndex, columnIndex, e)
-                          }
+                          onChange={(e) => initialX(rowIndex, columnIndex, e)}
                         />
                       </tr>
                     ))}
@@ -160,11 +149,11 @@ export default function GaussSeidel() {
           </button>
 
           <h2>Output</h2>
-          {output.map((item,index) =>
+          {output.map((item, index) => (
             <li key={index}>
-              X<sub>{index+1}</sub> = {item}
+              X<sub>{index + 1}</sub> = {item}
             </li>
-           )}
+          ))}
         </Container>
       </div>
       <Footer />

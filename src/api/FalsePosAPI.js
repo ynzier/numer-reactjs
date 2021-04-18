@@ -1,33 +1,34 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const math = require('mathjs');
+const math = require("mathjs");
 
-router.post('/api/FalsePosAPI', (req, res) => {
+router.post("/api/FalsePosAPI", (req, res) => {
   var eq = math.compile(req.body.equation);
   var xl = parseFloat(req.body.xl);
   var xr = parseFloat(req.body.xr);
   var xm = 0;
   var n = 0;
-  var check = parseFloat(0.000000);
+  var check = parseFloat(0.0);
   var tmpArr = [];
 
   let XL = {
-    x: xl
+    x: xl,
   };
   let XR = {
-    x: xr
+    x: xr,
   };
   let XM = {
-    x: xm
+    x: xm,
   };
 
-
   const findxm = (xl, xr) => {
-    return (parseFloat(xl) * eq.evaluate(XR) - parseFloat(xr) * eq.evaluate(XL)) / (eq.evaluate(XR) - eq.evaluate(XL))
-  }
+    return (
+      (parseFloat(xl) * eq.evaluate(XR) - parseFloat(xr) * eq.evaluate(XL)) /
+      (eq.evaluate(XR) - eq.evaluate(XL))
+    );
+  };
 
   do {
-
     xm = findxm(xl, xr);
     n++;
 
@@ -40,19 +41,16 @@ router.post('/api/FalsePosAPI', (req, res) => {
     }
 
     tmpArr.push({
-      'iteration': n,
-      'xl': xl,
-      'xr': xr,
-      'xm': xm,
-      'Error': check,
+      iteration: n,
+      xl: xl,
+      xr: xr,
+      xm: xm,
+      Error: check,
     });
-
-  } while (check > 0.000001 && n < 25)
+  } while (check > 0.000001 && n < 25);
 
   res.json({
-    tmpArr: tmpArr
-
-  })
+    tmpArr: tmpArr,
+  });
 });
 module.exports = router;
-

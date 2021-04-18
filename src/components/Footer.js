@@ -10,21 +10,26 @@ const footerStyle = {
   left: "0",
   bottom: "0",
   height: "80px",
-  width: "100%"
+  width: "100%",
 };
 
 const phantomStyle = {
   display: "block",
   padding: "20px",
   height: "120px",
-  width: "100%"
+  width: "100%",
 };
 const Footer = () => {
   return (
     <div>
       <div style={phantomStyle} />
       <div style={footerStyle}>
-          <span>Kunut Chirdchai <a className="App-link" href="http://cs.kmutnb.ac.th/">CS@KMUTNB</a></span>
+        <span>
+          Kunut Chirdchai{" "}
+          <a className="App-link" href="http://cs.kmutnb.ac.th/">
+            CS@KMUTNB
+          </a>
+        </span>
       </div>
     </div>
   );

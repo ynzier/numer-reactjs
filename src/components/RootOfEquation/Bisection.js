@@ -1,66 +1,69 @@
-import React, {
-  useState,
-  useEffect
-} from 'react';
-import {
-  Container
-} from 'react-bootstrap';
-import {
-  Table
-} from 'antd';
-import Axios from 'axios';
+import React, { useState, useEffect } from "react";
+import { Container } from "react-bootstrap";
+import { Table } from "antd";
+import Axios from "axios";
 
+import "../../App.css";
+import Topbar from "../Topbar";
+import Footer from "../Footer";
 
-import '../../App.css';
-import Topbar from '../Topbar';
-import Footer from '../Footer';
-
-
-
-const header = [{
-  title: () => {
-    return <p> Iteration </p>;
+const header = [
+  {
+    title: () => {
+      return <p> Iteration </p>;
+    },
+    dataIndex: "iteration",
+    key: "iteration",
+    align: "center",
   },
-  dataIndex: 'iteration',
-  key: 'iteration',
-  align: 'center',
-
-
-}, {
-  title: () => {
-    return <p> X <sub> L </sub></p> ;
+  {
+    title: () => {
+      return (
+        <p>
+          {" "}
+          X <sub> L </sub>
+        </p>
+      );
+    },
+    dataIndex: "xl",
+    align: "center",
+    width: 300,
   },
-  dataIndex: 'xl',
-  align: 'center',
-  width: 300,
-
-
-}, {
-  title: () => {
-    return <p> X <sub> R </sub></p> ;
+  {
+    title: () => {
+      return (
+        <p>
+          {" "}
+          X <sub> R </sub>
+        </p>
+      );
+    },
+    dataIndex: "xr",
+    align: "center",
+    width: 300,
   },
-  dataIndex: 'xr',
-  align: 'center',
-  width: 300,
-
-}, {
-  title: () => {
-    return <p> X <sub> M </sub></p> ;
+  {
+    title: () => {
+      return (
+        <p>
+          {" "}
+          X <sub> M </sub>
+        </p>
+      );
+    },
+    dataIndex: "xm",
+    align: "center",
+    width: 300,
   },
-  dataIndex: 'xm',
-  align: 'center',
-  width: 300,
-
-}, {
-  title: 'Error',
-  dataIndex: 'Error',
-  align: 'center',
-  width: 300,
-
-}]
+  {
+    title: "Error",
+    dataIndex: "Error",
+    align: "center",
+    width: 300,
+  },
+];
 
 var newArr = [];
-
 
 export default function Bisection() {
   const topic = "Bisection Method";
@@ -70,7 +73,7 @@ export default function Bisection() {
   let [xr, setXR] = useState(2);
 
   useEffect(() => {
-    document.title = topic
+    document.title = topic;
   }, []);
 
   const handleSubmit = (e) => {
@@ -81,70 +84,100 @@ export default function Bisection() {
   };
 
   const bisection = () => {
-
-    Axios
-      .post("http://localhost:5000/api/BisectionAPI", {
-        xl: parseFloat(xl),
-        xr: parseFloat(xr),
-        equation: equation,
-      })
-      .then(res => {
+    Axios.post("http://localhost:5000/api/BisectionAPI", {
+      xl: parseFloat(xl),
+      xr: parseFloat(xr),
+      equation: equation,
+    })
+      .then((res) => {
         console.log(res.data.tmpArr);
         newArr = res.data.tmpArr;
         setBtnState(1);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
-  }
+  };
 
   return (
     <div>
-      <Topbar/>
+      <Topbar />
       <p></p>
-            <div>
-            <Container>  
-              <h1><code>{topic}</code></h1>
-              <p>Equation :<span>&nbsp;&nbsp;</span>{equation}</p>
-              <p>X<sub>L</sub> :<span>&nbsp;&nbsp;</span>{xl}</p>
-              <p>X<sub>R</sub> :<span>&nbsp;&nbsp;</span>{xr}</p>
+      <div>
+        <Container>
+          <h1>
+            <code>{topic}</code>
+          </h1>
+          <p>
+            Equation :<span>&nbsp;&nbsp;</span>
+            {equation}
+          </p>
+          <p>
+            X<sub>L</sub> :<span>&nbsp;&nbsp;</span>
+            {xl}
+          </p>
+          <p>
+            X<sub>R</sub> :<span>&nbsp;&nbsp;</span>
+            {xr}
+          </p>
 
+          <form onSubmit={handleSubmit}>
+            <label>
+              Equation :<span>&nbsp;&nbsp;</span>
+              <input
+                disabled={btnState}
+                type="text"
+                value={equation}
+                onChange={(e) => setEquation(e.target.value)}
+              />
+            </label>
+            <p></p>
+            <label>
+              X<sub>L</sub> :<span>&nbsp;&nbsp;</span>
+              <input
+                disabled={btnState}
+                type="text"
+                value={xl}
+                onChange={(e) => setXL(e.target.value)}
+              />
+            </label>
+            <p></p>
+            <label>
+              X<sub>R</sub> :<span>&nbsp;&nbsp;</span>
+              <input
+                disabled={btnState}
+                type="text"
+                value={xr}
+                onChange={(e) => setXR(e.target.value)}
+              />
+            </label>
+            <p></p>
 
-              <form onSubmit={handleSubmit}>
-                  <label>
-                    Equation :<span>&nbsp;&nbsp;</span>
-                    <input disabled={btnState} type="text" value={equation} onChange={e => setEquation(e.target.value)}
-                    />
-                  </label>
-                  <p></p>
-                  <label>
-                    X<sub>L</sub> :<span>&nbsp;&nbsp;</span>
-                    <input disabled={btnState} type="text" value={xl} onChange={e => setXL(e.target.value)}
-                    />
-                  </label>
-                  <p></p>
-                  <label>
-                    X<sub>R</sub> :<span>&nbsp;&nbsp;</span>
-                    <input disabled={btnState} type="text" value={xr} onChange={e => setXR(e.target.value)}/>
-                  </label>
-                  <p></p>
-
-                  {btnState === 0  ? 
-                  <button type="submit" disabled={btnState} value="Submit">Submit</button> :
-                  <button type="submit" disabled={!btnState} value="Submit">Reset</button> }
-                </form>
-                <p></p><p></p>
-            <div>
-            {<Table dataSource={newArr} columns={header} rowKey='iteration' pagination={false}/>}
-            </div>
-          </Container>
-
+            {btnState === 0 ? (
+              <button type="submit" disabled={btnState} value="Submit">
+                Submit
+              </button>
+            ) : (
+              <button type="submit" disabled={!btnState} value="Submit">
+                Reset
+              </button>
+            )}
+          </form>
+          <p></p>
+          <p></p>
+          <div>
+            {
+              <Table
+                dataSource={newArr}
+                columns={header}
+                rowKey="iteration"
+                pagination={false}
+              />
+            }
+          </div>
+        </Container>
       </div>
       <Footer />
     </div>
   );
 }
-
-
-
-
