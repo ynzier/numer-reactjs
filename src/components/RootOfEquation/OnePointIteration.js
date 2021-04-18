@@ -53,12 +53,13 @@ const header = [
 var newArr = [];
 
 export default function OnePoint() {
+  const topic = "One Point Iteration";
   const [equation, setEquation] = useState("((5/x)+x)/2");
   const [btnState, setBtnState] = useState(0);
   let [x_old, setOldX] = useState(-5.0324);
 
   useEffect(() => {
-    document.title = "One-Point Iteration Method ";
+    document.title = topic
   }, []);
 
   const handleSubmit = (e) => {
@@ -90,7 +91,7 @@ export default function OnePoint() {
       <div>
         <Container>
           <h1>
-            <code>One-Point Position</code>
+            <code>{topic}</code>
           </h1>
           <p>
             Equation :<span>&nbsp;&nbsp;</span>

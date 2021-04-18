@@ -6,8 +6,8 @@ import "../../App.css";
 import Topbar from "../Topbar";
 import Footer from "../Footer";
 
-export default function GaussElimination() {
-  const topic = "Gauss Elimination";
+export default function LUDecompose() {
+  const topic = "LU Decomposition";
   const [btnState, setBtnState] = useState(false);
   const [output, setOutput] = useState([]);
   const [matrixA, setMatrixA] = useState(
@@ -19,7 +19,7 @@ export default function GaussElimination() {
 
 
   useEffect(() => {
-    document.title = topic;
+    document.title = topic
   }, []);
 
   const initialA = (row, column, event) => {
@@ -41,13 +41,13 @@ export default function GaussElimination() {
   const handleSubmit = (e) => {
     if (btnState === false) {
       e.preventDefault();
-      gauss_elimination();
+      lu_decompose();
     }
   };
-  const gauss_elimination = () => {
+  const lu_decompose = () => {
 
     Axios
-      .post("http://localhost:5000/api/GaussElimAPI", {
+      .post("http://localhost:5000/api/LUDecomposeAPI", {
         matrixA: matrixA,
         matrixB: matrixB,
       })

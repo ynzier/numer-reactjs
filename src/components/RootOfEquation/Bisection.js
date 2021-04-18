@@ -63,16 +63,14 @@ var newArr = [];
 
 
 export default function Bisection() {
-
-
-
+  const topic = "Bisection Method";
   const [equation, setEquation] = useState("x^3 - x - 3");
   const [btnState, setBtnState] = useState(0);
   let [xl, setXL] = useState(1);
   let [xr, setXR] = useState(2);
 
   useEffect(() => {
-    document.title = "Bisection Method ";
+    document.title = topic
   }, []);
 
   const handleSubmit = (e) => {
@@ -106,7 +104,7 @@ export default function Bisection() {
       <p></p>
             <div>
             <Container>  
-              <h1><code>Bisection Method</code></h1>
+              <h1><code>{topic}</code></h1>
               <p>Equation :<span>&nbsp;&nbsp;</span>{equation}</p>
               <p>X<sub>L</sub> :<span>&nbsp;&nbsp;</span>{xl}</p>
               <p>X<sub>R</sub> :<span>&nbsp;&nbsp;</span>{xr}</p>

@@ -62,13 +62,14 @@ const header = [{
 var newArr = [];
 
 export default function Secant() {
+  const topic = "Secant Method";
   const [equation, setEquation] = useState("x^3 - 2*x - 5");
   const [btnState, setBtnState] = useState(0);
   let [x0, setXL] = useState(1);
   let [x1, setXR] = useState(2);
 
   useEffect(() => {
-    document.title = "Secant Method ";
+    document.title = topic
   }, []);
 
   const handleSubmit = (e) => {
@@ -102,7 +103,7 @@ export default function Secant() {
       <p></p>
       <div>
         <Container>
-          <h1><code>Secant Method</code></h1>
+          <h1><code>{topic}</code></h1>
           <p>Equation :<span>&nbsp;&nbsp;</span>{equation}</p>
           <p>X<sub>0</sub> :<span>&nbsp;&nbsp;</span>{x0}</p>
           <p>X<sub>1</sub> :<span>&nbsp;&nbsp;</span>{x1}</p>

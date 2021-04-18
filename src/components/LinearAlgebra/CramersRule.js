@@ -7,6 +7,7 @@ import Topbar from "../Topbar";
 import Footer from "../Footer";
 
 export default function CramersRule() {
+  const topic = "Cramer's Rule";
   const [btnState, setBtnState] = useState(false);
   const [output, setOutput] = useState([]);
   const [matrixA, setMatrixA] = useState(
@@ -18,7 +19,7 @@ export default function CramersRule() {
 
 
   useEffect(() => {
-    document.title = "Cramer's Rule ";
+    document.title = topic;
   }, []);
 
   const initialA = (row, column, event) => {
@@ -69,7 +70,7 @@ export default function CramersRule() {
       <div>
         <Container>
           <h1>
-            <code>Cramer's Rule</code>
+            <code>{topic}</code>
           </h1>
           <p></p>
           <p></p>

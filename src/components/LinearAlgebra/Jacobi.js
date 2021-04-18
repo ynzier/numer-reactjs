@@ -6,8 +6,8 @@ import "../../App.css";
 import Topbar from "../Topbar";
 import Footer from "../Footer";
 
-export default function GaussElimination() {
-  const topic = "Gauss Elimination";
+export default function Jacobi() {
+  const topic = "Jacobi Itertion Method";
   const [btnState, setBtnState] = useState(false);
   const [output, setOutput] = useState([]);
   const [matrixA, setMatrixA] = useState(
@@ -17,9 +17,12 @@ export default function GaussElimination() {
     Array.from({ length: 1 }, () => Array.from({ length: 3 }, () => null))
   );
 
+  const [matrixX, setMatrixX] = useState(
+    Array.from({ length: 1 }, () => Array.from({ length: 3 }, () => null))
+  );
 
   useEffect(() => {
-    document.title = topic;
+    document.title = topic
   }, []);
 
   const initialA = (row, column, event) => {
@@ -36,25 +39,32 @@ export default function GaussElimination() {
     setMatrixB(copy);
 
   };
+  const initialX = (row, column, event) => {
+    let copy = [...matrixX];
+    copy[row][column] = +event.target.value;
+    setMatrixX(copy);
 
+  };
 
   const handleSubmit = (e) => {
     if (btnState === false) {
       e.preventDefault();
-      gauss_elimination();
+      jacobi();
     }
   };
-  const gauss_elimination = () => {
+  const jacobi = () => {
 
     Axios
-      .post("http://localhost:5000/api/GaussElimAPI", {
+      .post("http://localhost:5000/api/JacobiAPI", {
         matrixA: matrixA,
         matrixB: matrixB,
+        matrixX: matrixX,
       })
       .then(res => {
 
         setBtnState(true);
         setOutput(res.data.out);
+        console.log(res.data.out);
       
       })
       .catch(err => {
@@ -75,7 +85,7 @@ export default function GaussElimination() {
           <p></p>
           <div>
           <Row>
-          <Col xs="7">X Matrix
+          <Col xs="7">A Matrix
             <table>
               
               <tbody>
@@ -98,7 +108,7 @@ export default function GaussElimination() {
             </table>
             </Col>
             
-            <Col xs="5">Y Matrix
+            <Col xs="5">B Matrix
             <table>
               
               <tbody>
@@ -121,6 +131,28 @@ export default function GaussElimination() {
             </table>
             </Col>
             </Row>
+            <p></p>
+            Initial X
+            <table>
+              
+              <tbody>
+                {matrixX.map((row, rowIndex) => (
+                  <tr key={rowIndex}>
+                    {row.map((column, columnIndex) => (
+                      <tr key={columnIndex}>
+                        <input
+                          type="number"
+                          disabled={btnState}
+                          onChange={(e) =>
+                            initialX(rowIndex, columnIndex, e)
+                          }
+                        />
+                      </tr>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
           <p></p>
           <button value="Submit" disabled={btnState} onClick={handleSubmit}>

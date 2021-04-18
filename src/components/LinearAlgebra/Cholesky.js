@@ -6,8 +6,8 @@ import "../../App.css";
 import Topbar from "../Topbar";
 import Footer from "../Footer";
 
-export default function GaussElimination() {
-  const topic = "Gauss Elimination";
+export default function Cholesky() {
+  const topic = "Cholesky Method";
   const [btnState, setBtnState] = useState(false);
   const [output, setOutput] = useState([]);
   const [matrixA, setMatrixA] = useState(
@@ -16,6 +16,7 @@ export default function GaussElimination() {
   const [matrixB, setMatrixB] = useState(
     Array.from({ length: 1 }, () => Array.from({ length: 3 }, () => null))
   );
+
 
 
   useEffect(() => {
@@ -41,13 +42,14 @@ export default function GaussElimination() {
   const handleSubmit = (e) => {
     if (btnState === false) {
       e.preventDefault();
-      gauss_elimination();
+      cholesky();
+      console.log(output);
     }
   };
-  const gauss_elimination = () => {
+  const cholesky = () => {
 
     Axios
-      .post("http://localhost:5000/api/GaussElimAPI", {
+      .post("http://localhost:5000/api/CholeskyAPI", {
         matrixA: matrixA,
         matrixB: matrixB,
       })
@@ -75,7 +77,7 @@ export default function GaussElimination() {
           <p></p>
           <div>
           <Row>
-          <Col xs="7">X Matrix
+          <Col xs="7">A Matrix
             <table>
               
               <tbody>
@@ -98,7 +100,7 @@ export default function GaussElimination() {
             </table>
             </Col>
             
-            <Col xs="5">Y Matrix
+            <Col xs="5">B Matrix
             <table>
               
               <tbody>

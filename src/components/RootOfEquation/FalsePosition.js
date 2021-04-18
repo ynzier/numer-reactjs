@@ -62,13 +62,14 @@ const header = [{
 var newArr = [];
 
 export default function FalsePosition() {
+  const topic = "False Position Method";
   const [equation, setEquation] = useState("x^3 - x - 3");
   const [btnState, setBtnState] = useState(0);
   let [xl, setXL] = useState(1);
   let [xr, setXR] = useState(2);
 
   useEffect(() => {
-    document.title = "False Position Method ";
+    document.title = topic
   }, []);
 
   const handleSubmit = (e) => {
@@ -102,7 +103,7 @@ export default function FalsePosition() {
       <p></p>
             <div>
             <Container>  
-              <h1><code>False Position Method</code></h1>
+              <h1><code>{topic}</code></h1>
               <p>Equation :<span>&nbsp;&nbsp;</span>{equation}</p>
               <p>X<sub>L</sub> :<span>&nbsp;&nbsp;</span>{xl}</p>
               <p>X<sub>R</sub> :<span>&nbsp;&nbsp;</span>{xr}</p>

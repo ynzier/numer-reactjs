@@ -54,12 +54,13 @@ const header = [{
 var newArr = [];
 
 export default function NewtonRaphson() {
+  const topic = "Newton Raphson";
   const [equation, setEquation] = useState("x^3-x-1");
   const [btnState, setBtnState] = useState(0);
   let [x_old, setOldX] = useState(1);
 
   useEffect(() => {
-    document.title = "Newton Raphson Method ";
+    document.title = topic
   }, []);
 
 
@@ -93,7 +94,7 @@ export default function NewtonRaphson() {
       <p></p>
       <div>
         <Container>
-          <h1><code>Newton Raphson</code></h1>
+          <h1><code>{topic}</code></h1>
           <p>Equation :<span>&nbsp;&nbsp;</span>{equation}</p>
           <p>X :<span>&nbsp;&nbsp;</span>{x_old}</p>
 
