@@ -84,6 +84,7 @@ export default function Bisection() {
   };
 
   const bisection = () => {
+
     Axios.post("http://localhost:5000/api/BisectionAPI", {
       xl: parseFloat(xl),
       xr: parseFloat(xr),
