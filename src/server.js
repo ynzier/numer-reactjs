@@ -45,7 +45,7 @@ const swaggerOptions = {
         title: "Library API",
         version: '1.0.0',
       },
-      host: ["localhost:5000"],
+      host: ["localhost:3000"],
     },
 
 

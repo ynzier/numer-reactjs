@@ -9,6 +9,7 @@
     "antd": "^4.15.0",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
+    "conjugate-gradient": "0.0.2",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "mathjs": "^9.3.0",
