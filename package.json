@@ -48,6 +48,7 @@
       "last 1 safari version"
     ]
   },
+  "proxy": "http://localhost:5000",
   "devDependencies": {
     "@types/swagger-jsdoc": "^6.0.0",
     "concurrently": "^6.0.1"
