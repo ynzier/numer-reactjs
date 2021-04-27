@@ -8,7 +8,6 @@ router.post("/api/ConjugateGradientAPI", (req, res) => {
   var solution = [];
   var n = MatrixA.length;
   var x = [].concat(...req.body.matrixX);
-  var error;
   function positive_definite(dimention) {
     var tempMatrix = [];
     for (var i = 0; i < dimention; i++) {
@@ -27,7 +26,7 @@ router.post("/api/ConjugateGradientAPI", (req, res) => {
   }
 
   if (!positive_definite(1)) {
-    error = "This matrix doesn't positive definite";
+    var error = "This matrix doesn't positive definite";
     console.log(error);
     return false;
   }
@@ -56,7 +55,8 @@ router.post("/api/ConjugateGradientAPI", (req, res) => {
   solution = x;
 
   console.log(solution);
-
+  console.log(math.multiply(MatrixA, solution));
+  
   res.json({
     out: solution,
   });

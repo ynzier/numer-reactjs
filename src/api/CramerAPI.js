@@ -3,29 +3,34 @@ const router = express.Router();
 const math = require("mathjs");
 
 router.post("/api/CramerAPI", (req, res) => {
-  var matrix = req.body.matrixA;
-  var freeTerms = [].concat(...req.body.matrixB);
+  var MatrixA = req.body.matrixA;
+  var MatrixB = [].concat(...req.body.matrixB);
 
-  var result = cramersRule(matrix, freeTerms);
+  var result = cramersRule(MatrixA, MatrixB);
+
+  //result
   console.log(result);
+  //check
+  console.log(math.multiply(MatrixA, result));
 
-  function cramersRule(matrix, freeTerms) {
-    var det = detr(matrix),
+
+  function cramersRule(MatrixA, MatrixB) {
+    var det = detr(MatrixA),
       returnArray = [],
       i,
       tmpMatrix;
 
-    for (i = 0; i < matrix[0].length; i++) {
-      var tmpMatrix = insertInTerms(matrix, freeTerms, i);
+    for (i = 0; i < MatrixA[0].length; i++) {
+      var tmpMatrix = insertInTerms(MatrixA, MatrixB, i);
       returnArray.push(detr(tmpMatrix) / det);
     }
     return returnArray;
   }
 
-  function insertInTerms(matrix, ins, at) {
-    var tmpMatrix = clone(matrix),
+  function insertInTerms(MatrixA, ins, at) {
+    var tmpMatrix = clone(MatrixA),
       i;
-    for (i = 0; i < matrix.length; i++) {
+    for (i = 0; i < MatrixA.length; i++) {
       tmpMatrix[i][at] = ins[i];
     }
     return tmpMatrix;
@@ -78,6 +83,8 @@ router.post("/api/CramerAPI", (req, res) => {
     });
   }
 
+
+  
   res.json({
     out: result,
   });
