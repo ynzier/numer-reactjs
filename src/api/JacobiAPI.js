@@ -8,29 +8,9 @@ router.post("/api/JacobiAPI", (req, res) => {
   var MatrixX = [].concat(...req.body.matrixX);
   var solution = [];
   var n = MatrixA.length;
+  var epsilon = new Array(n);
 
-  x = new Array(n);
-  var xold;
-  epsilon = new Array(n);
-  do {
-    xold = JSON.parse(JSON.stringify(x));
-    for (var i = 0; i < n; i++) {
-      var sum = 0;
-      for (var j = 0; j < n; j++) {
-        if (i !== j) {
-          //else i == j That is a divide number
-          sum = sum + MatrixA[i][j] * MatrixX[j];
-        }
-      }
-      x[i] = (MatrixB[i] - sum) / MatrixA[i][i]; //update x[i]
-    }
-  } while (error(x, xold)); //if true , continue next iteration
-
-  for (i = 0; i < x.length; i++) {
-    solution.push(x[i]);
-  }
-
-  function error(xnew, xold) {
+  error = (xnew, xold) => {
     for (var i = 0; i < xnew.length; i++) {
       epsilon[i] = Math.abs((xnew[i] - xold[i]) / xnew[i]);
     }
@@ -40,7 +20,23 @@ router.post("/api/JacobiAPI", (req, res) => {
       }
     }
     return false;
-  }
+  };
+
+  do {
+    temp = [];
+    xold = MatrixX;
+    for (var i = 0; i < n; i++) {
+      var sum = 0;
+      for (var j = 0; j < n; j++) {
+        if (i !== j) {
+          //else i == j That is a divide number
+          sum = sum + MatrixA[i][j] * MatrixX[j];
+        }
+      }
+      temp[i] = (MatrixB[i] - sum) / MatrixA[i][i]; //update MatrixX[i]
+    }
+    solution = temp;
+  } while (error(MatrixX, xold)); //if true , continue next iteration
 
   console.log(solution);
   console.log(math.multiply(MatrixA, solution));

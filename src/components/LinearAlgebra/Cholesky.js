@@ -46,7 +46,7 @@ export default function Cholesky() {
       matrixB: matrixB,
     })
       .then((res) => {
-        setBtnState(true);
+        setBtnState(false);
         setOutput(res.data.out);
       })
       .catch((err) => {

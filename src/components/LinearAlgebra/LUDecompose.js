@@ -45,7 +45,7 @@ export default function LUDecompose() {
       matrixB: matrixB,
     })
       .then((res) => {
-        setBtnState(true);
+        setBtnState(false);
         setOutput(res.data.out);
       })
       .catch((err) => {
