@@ -40,7 +40,7 @@ router.post("/api/BisectionAPI", (req, res) => {
   var xr = parseFloat(req.body.xr);
   var xm = 0;
   var n = 0;
-  var check = parseFloat(0.0);
+  var check = parseFloat(1.0);
   var tmpArr = [];
 
   const findxm = (xl, xr) => {
@@ -57,6 +57,15 @@ router.post("/api/BisectionAPI", (req, res) => {
 
     xm = findxm(xl, xr);
     n++;
+
+    tmpArr.push({
+    iteration: n,
+    xl: xl,
+    xr: xr,
+    xm: xm,
+    Error: check,
+    });
+    
     if (eq.evaluate(XL) * eq.evaluate(XR) > 0) {
       check = Math.abs((xm - xl) / xm).toFixed(8);
       xl = xm;
@@ -65,13 +74,7 @@ router.post("/api/BisectionAPI", (req, res) => {
       xr = xm;
     }
 
-    tmpArr.push({
-      iteration: n,
-      xl: xl,
-      xr: xr,
-      xm: xm,
-      Error: check,
-    });
+
   } while (check > 0.000001 && n < 25);
 
   res.json({
