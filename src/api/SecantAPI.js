@@ -46,16 +46,10 @@ router.post("/api/SecantAPI", (req, res) => {
 
   do {
     i++;
-    let X = {
-      x: x0,
-    };
-    let Xi = {
-      x: x1,
-    };
-
-    DiffX = (eq.evaluate(X) - eq.evaluate(Xi)) / (x0 - x1);
-    x_new = x1 - eq.evaluate(Xi) / DiffX;
-
+    x_new = x1 - eq.evaluate({x:x1}) / ((eq.evaluate({x:x0}) - eq.evaluate({x:x1})) / (x0 - x1));
+    console.log(i)
+    console.log("fx",i," ",eq.evaluate({x:x0}))
+    console.log("fx",i+1," ",eq.evaluate({x:x1}))
     check = math.abs((x_new - x1) / x_new).toFixed(8);
 
     tmpArr.push({

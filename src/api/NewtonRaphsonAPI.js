@@ -44,13 +44,12 @@ router.post("/api/NewtonRaphsonAPI", (req, res) => {
   var tmpArr = [];
 
   do {
-    let X_OLD = {
-      x: x_old,
-    };
-
-    x_new = x_old - eq.evaluate(X_OLD) / diffeq.evaluate(X_OLD);
+    x_new = x_old - eq.evaluate({x:x_old}) / diffeq.evaluate({x:x_old});
     check = Math.abs((x_new - x_old) / x_new).toFixed(8);
     n++;
+    console.log(n);
+    console.log("eval ",n,":",eq.evaluate({x:x_old}))
+    console.log("diff ",n,":",diffeq.evaluate({x:x_old}))
     tmpArr.push({
       iteration: n,
       x_old: x_old,

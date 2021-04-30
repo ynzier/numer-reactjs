@@ -43,10 +43,7 @@ router.post("/api/OnePointAPI", (req, res) => {
   var tmpArr = [];
 
   do {
-    let X_OLD = {
-      x: x_old,
-    };
-    x_new = eq.evaluate(X_OLD);
+    x_new = eq.evaluate({x:x_old});
     check = Math.abs((x_new - x_old) / x_new).toFixed(8);
     n++;
     tmpArr.push({
