@@ -10,6 +10,7 @@ import {
   DropdownMenu,
   DropdownItem,
   DropdownToggle,
+  Button,
 } from "reactstrap";
 
 const Topbar = () => {
@@ -61,7 +62,10 @@ const Topbar = () => {
               <DropdownItem href="/Jacobi">Jacobi Iteration</DropdownItem>
             </DropdownMenu>
           </Dropdown>
-        </Nav>
+          <span>&nbsp;&nbsp;</span>
+          <Button color="secondary" href="/Newton-Divided-Difference" >Interpolation - Newton-Divided Difference</Button>
+         </Nav>
+
       </Navbar>
     </div>
   );

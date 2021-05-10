@@ -22,6 +22,7 @@ const CholeskyAPI = require("./api/CholeskyAPI");
 const LUDecomposeAPI = require("./api/LUDecomposeAPI");
 const GaussSeidelAPI = require("./api/GaussSeidelAPI");
 const JacobiAPI = require("./api/JacobiAPI");
+const NewtonInterpolationAPI = require("./api/NewtonInterpolation");
 app.use("/", BisectionAPI);
 app.use("/", FalsePosAPI);
 app.use("/", OnePointAPI);
@@ -35,7 +36,7 @@ app.use("/", CholeskyAPI);
 app.use("/", LUDecomposeAPI);
 app.use("/", GaussSeidelAPI);
 app.use("/", JacobiAPI);
-
+app.use("/", NewtonInterpolationAPI);
 
 
 const swaggerOptions = {

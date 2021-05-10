@@ -23,6 +23,7 @@ router.post("/api/GaussSeidelAPI", (req, res) => {
         }
       }
       x[i] = (MatrixB[i] - sum) / MatrixA[i][i]; //update x[i]
+      console.log(x[i]);
     }
   } while (error(x, xold)); //if true , continue next iteration
 

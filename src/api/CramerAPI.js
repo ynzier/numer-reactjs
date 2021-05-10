@@ -74,7 +74,7 @@ router.post("/api/CramerAPI", (req, res) => {
       }
       ret *= Aj[j];
     }
-    return Math.round(ret * A[j][j] * 100) / 100;
+    return Math.round(ret * A[j][j]);
   }
 
   function clone(m) {
