@@ -43,7 +43,7 @@ const swaggerOptions = {
     swaggerDefinition: {
         
       info: {
-        title: "Library API",
+        title: "Numerical API",
         version: '1.0.0',
       },
       host: ["localhost:3000"],
