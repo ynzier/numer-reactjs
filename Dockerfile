@@ -10,5 +10,5 @@ RUN npm install -g concurrently express nodemon
 EXPOSE 3000 5000
 CMD ["npm", "run","dev"]
 
-// docker build -t docker-react .
-// docker run -it --rm -d -p 3000:3000 -p 5000:5000 docker-react
+# docker build -t docker-react .
+# docker run -it --rm -d -p 3000:3000 -p 5000:5000 docker-react
