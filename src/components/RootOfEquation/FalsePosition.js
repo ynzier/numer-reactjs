@@ -154,11 +154,11 @@ export default function FalsePosition() {
             <p></p>
 
             {btnState === 0 ? (
-              <button type="submit" disabled={btnState} value="Submit">
+              <button type="submit">
                 Submit
               </button>
             ) : (
-              <button type="submit" disabled={!btnState} value="Submit">
+              <button type="submit">
                 Reset
               </button>
             )}

@@ -51,9 +51,6 @@ const Topbar = () => {
               <DropdownItem href="/GaussJordan">
                 Gauss-Jordan Elimination
               </DropdownItem>
-              <DropdownItem href="/ConjugateGradient">
-                Conjugate Gradient
-              </DropdownItem>
               <DropdownItem href="/Cholesky">
                 Cholesky Decomposition
               </DropdownItem>
