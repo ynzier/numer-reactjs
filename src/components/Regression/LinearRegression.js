@@ -7,14 +7,13 @@ import Topbar from "../Topbar";
 import Footer from "../Footer";
 
 export default function NewtonDivided() {
-  const topic = "Newton Divided Difference";
+  const topic = "Linear Regression";
   const [num, setNum] = useState(0);
   const [xValue, setX] = useState([]);
   const [yValue, setY] = useState([]);
-  const [pointCount, setpointCount] = useState(0);
-  const [interpolatePoint, setinterpolatePoint] = useState([]);
   const [FindX, setFindX] = useState(0);
-  const [output, setOutput] = useState([]);
+  const [equation, setEquation] = useState("");
+  const [output, setOutput] = useState(0);
 
   useEffect(() => {
     document.title = topic;
@@ -22,10 +21,6 @@ export default function NewtonDivided() {
 
   const generate_table = () => {
     return [...Array(parseInt(num || 0)).keys()];
-  };
-
-  const generate_interpoint = () => {
-    return [...Array(parseInt(pointCount || 0)).keys()];
   };
 
   const initialX = (i, event) => {
@@ -40,24 +35,18 @@ export default function NewtonDivided() {
     setY(copy);
   };
 
-  const initialPoint = (i, event) => {
-    let copy = [...interpolatePoint];
-    copy[i] = +event.target.value - 1;
-    setinterpolatePoint(copy);
-  };
-
   const sendToAPI = (e) => {
     e.preventDefault();
-    NewtonDivided();
+    Regression();
   };
-  const NewtonDivided = () => {
-    Axios.post("http://localhost:5000/api/NewtonInterpolation", {
+  const Regression = () => {
+    Axios.post("http://localhost:5000/api/LinearRegressionAPI", {
       xValue: xValue,
       yValue: yValue,
-      interpolatePoint: interpolatePoint,
       FindX: FindX,
     })
       .then((res) => {
+        setEquation(res.data.equation);
         setOutput(res.data.out);
       })
       .catch((err) => {
@@ -125,32 +114,6 @@ export default function NewtonDivided() {
                   />
                 </label>
                 <p></p>
-                <label>
-                  Enter Interpolate Points :<span>&nbsp;&nbsp;</span>
-                  <input
-                    type="number"
-                    value={pointCount}
-                    onChange={(e) => setpointCount(e.target.value)}
-                  />
-                </label>
-
-                {generate_interpoint().map((i) => (
-                  <div key={i} className="list-group list-group-flush">
-                    <div className="list-group-item">
-                      <div className="form-row">
-                        <div className="form-group col-4">
-                          <label>Interpolate Point {i + 1} =</label>
-                          <input
-                            type="number"
-                            onChange={(e) => initialPoint(i, e)}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-
-                <p></p>
                 <button type="submit">
                   Submit
                 </button>
@@ -159,6 +122,8 @@ export default function NewtonDivided() {
           </div>
           <p></p>
           <h2>Output</h2>
+          Equation  in y = mx+b is {equation}
+          <p></p>
           F(x) = {output}
         </Container>
       </div>

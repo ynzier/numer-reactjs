@@ -27,6 +27,7 @@ import GaussSeidel from './components/LinearAlgebra/GaussSeidel';
 import Jacobi from './components/LinearAlgebra/Jacobi';
 
 import NewtonDivided from './components/Interpolation/NewtonDivided';
+import LinearRegression from './components/Regression/LinearRegression';
 
 class App extends Component {
   render() {
@@ -48,6 +49,7 @@ class App extends Component {
           <Route exact path="/GaussSeidel" component={GaussSeidel} />
           <Route exact path="/Jacobi" component={Jacobi} />
           <Route exact path="/Newton-Divided-Difference" component={NewtonDivided} />
+          <Route exact path="/Linear-Regression" component={LinearRegression} />
         </BrowserRouter>
         </div>
       </div>

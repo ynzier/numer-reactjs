@@ -23,6 +23,7 @@ const LUDecomposeAPI = require("./api/LUDecomposeAPI");
 const GaussSeidelAPI = require("./api/GaussSeidelAPI");
 const JacobiAPI = require("./api/JacobiAPI");
 const NewtonInterpolationAPI = require("./api/NewtonInterpolation");
+const LinearRegressionAPI = require("./api/LinearRegressionAPI");
 app.use("/", BisectionAPI);
 app.use("/", FalsePosAPI);
 app.use("/", OnePointAPI);
@@ -36,7 +37,7 @@ app.use("/", LUDecomposeAPI);
 app.use("/", GaussSeidelAPI);
 app.use("/", JacobiAPI);
 app.use("/", NewtonInterpolationAPI);
-
+app.use("/", LinearRegressionAPI);
 
 const swaggerOptions = {
     swaggerDefinition: {
