@@ -9,37 +9,33 @@ router.post("/api/GaussSeidelAPI", (req, res) => {
   var solution = [];
   var n = MatrixA.length;
 
-  x = new Array(n);
   var xold;
   epsilon = new Array(n);
   do {
-    xold = x;
+    xold = MatrixX;
     for (var i = 0; i < n; i++) {
       var sum = 0;
       for (var j = 0; j < n; j++) {
         if (i !== j) {
-          //else i == j That is a divide number
           sum = sum + MatrixA[i][j] * MatrixX[j];
         }
       }
-      x[i] = (MatrixB[i] - sum) / MatrixA[i][i]; //update x[i]
-      console.log(x[i]);
+      MatrixX[i] = (MatrixB[i] - sum) / MatrixA[i][i];
     }
-  } while (error(x, xold)); //if true , continue next iteration
+  } while (error(MatrixX, xold));
 
-  for (i = 0; i < x.length; i++) {
-    solution.push(x[i]);
+  for (i = 0; i < MatrixX.length; i++) {
+    solution.push(MatrixX[i]);
   }
 
   function error(xnew, xold) {
     for (var i = 0; i < xnew.length; i++) {
       epsilon[i] = Math.abs((xnew[i] - xold[i]) / xnew[i]);
     }
-    for (i = 0; i < epsilon.length; i++) {
-      if (epsilon[i] > 0.00000001) {
+   
+      if (epsilon[0] > 0.000000001 && epsilon[1] > 0.000000001 && epsilon[2] > 0.000000001) {
         return true;
       }
-    }
     return false;
   }
 
