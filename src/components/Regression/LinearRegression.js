@@ -5,7 +5,7 @@ import Axios from "axios";
 import "../../App.css";
 import Topbar from "../Topbar";
 import Footer from "../Footer";
-import Plot from "react-plotly.js";
+import {Plot} from "react-plotly.js";
 
 export default function NewtonDivided() {
   const topic = "Linear Regression";
