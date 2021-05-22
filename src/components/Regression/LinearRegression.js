@@ -5,7 +5,7 @@ import Axios from "axios";
 import "../../App.css";
 import Topbar from "../Topbar";
 import Footer from "../Footer";
-import Plot from 'react-plotly.js';
+import Plot from "react-plotly.js";
 
 export default function NewtonDivided() {
   const topic = "Linear Regression";
@@ -52,7 +52,7 @@ export default function NewtonDivided() {
         console.log(err);
       });
   };
-  
+
   return (
     <div>
       <Topbar />
@@ -86,7 +86,8 @@ export default function NewtonDivided() {
                             X<sub>{i}</sub> =
                           </label>
                           <input
-                            type="number" step="any"
+                            type="number"
+                            step="any"
                             onChange={(e) => initialX(i, e)}
                           />
                         </div>
@@ -95,7 +96,8 @@ export default function NewtonDivided() {
                             F(x<sub>{i}</sub>) =
                           </label>
                           <input
-                            type="number" step="any"
+                            type="number"
+                            step="any"
                             onChange={(e) => initialY(i, e)}
                           />
                         </div>
@@ -113,35 +115,34 @@ export default function NewtonDivided() {
                   />
                 </label>
                 <p></p>
-                <button type="submit">
-                  Submit
-                </button>
+                <button type="submit">Submit</button>
               </form>
             ) : null}
           </div>
           <p></p>
           <h2>Output</h2>
-          Equation  in y = mx+b is {equation}
+          Equation in y = mx+b is {equation}
           <p></p>
           F(x) = {output}
           <p></p>
-          {plotData[0] != null &&          
-          <Plot
-            data={[
-              {                
-                x: xValue, 
-                y: yValue,
-                name: 'Scatter Value',
-                mode: 'markers',
-                type: 'scatter'
-              },
-              {
-                x: xValue,
-                y: plotData,
-                name: 'Linear Regression',
-              }
-            ]}
-          />}
+          {plotData[0] != null && (
+            <Plot
+              data={[
+                {
+                  x: xValue,
+                  y: yValue,
+                  name: "Scatter Value",
+                  mode: "markers",
+                  type: "scatter",
+                },
+                {
+                  x: xValue,
+                  y: plotData,
+                  name: "Linear Regression",
+                },
+              ]}
+            />
+          )}
         </Container>
       </div>
       <Footer />
