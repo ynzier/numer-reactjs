@@ -5,6 +5,7 @@ import Axios from "axios";
 import "../../App.css";
 import Topbar from "../Topbar";
 import Footer from "../Footer";
+import Plot from 'react-plotly.js';
 
 export default function NewtonDivided() {
   const topic = "Linear Regression";
@@ -14,6 +15,7 @@ export default function NewtonDivided() {
   const [FindX, setFindX] = useState(0);
   const [equation, setEquation] = useState("");
   const [output, setOutput] = useState(0);
+  const [plotData, setPlotData] = useState([]);
 
   useEffect(() => {
     document.title = topic;
@@ -34,12 +36,8 @@ export default function NewtonDivided() {
     copy[i] = +event.target.value;
     setY(copy);
   };
-
   const sendToAPI = (e) => {
     e.preventDefault();
-    Regression();
-  };
-  const Regression = () => {
     Axios.post("http://localhost:5000/api/LinearRegressionAPI", {
       xValue: xValue,
       yValue: yValue,
@@ -48,12 +46,13 @@ export default function NewtonDivided() {
       .then((res) => {
         setEquation(res.data.equation);
         setOutput(res.data.out);
+        setPlotData(res.data.plotData);
       })
       .catch((err) => {
         console.log(err);
       });
   };
-
+  
   return (
     <div>
       <Topbar />
@@ -125,6 +124,24 @@ export default function NewtonDivided() {
           Equation  in y = mx+b is {equation}
           <p></p>
           F(x) = {output}
+          <p></p>
+          {plotData[0] != null &&          
+          <Plot
+            data={[
+              {                
+                x: xValue, 
+                y: yValue,
+                name: 'Scatter Value',
+                mode: 'markers',
+                type: 'scatter'
+              },
+              {
+                x: xValue,
+                y: plotData,
+                name: 'Linear Regression',
+              }
+            ]}
+          />}
         </Container>
       </div>
       <Footer />

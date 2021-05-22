@@ -23,12 +23,16 @@ router.post("/api/LinearRegressionAPI", (req, res) => {
   var equation = slope + "x+" + intercept;
   var out = (slope*FindX)+intercept;
 
+  var plotData = [];
+  for(i = 0; i<n ; i++)
+  {
+    plotData.push(slope*x[i]+intercept);
+  }
 
-  console.log(equation);
-  console.log(out);
   res.json({
     equation: equation,
     out: out,
+    plotData: plotData,
   });
 });
 module.exports = router;
