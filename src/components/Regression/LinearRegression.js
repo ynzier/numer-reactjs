@@ -7,7 +7,7 @@ import Topbar from "../Topbar";
 import Footer from "../Footer";
 import {Plot} from "react-plotly.js";
 
-export default function NewtonDivided() {
+export default function LinearRegression() {
   const topic = "Linear Regression";
   const [num, setNum] = useState(0);
   const [xValue, setX] = useState([]);
